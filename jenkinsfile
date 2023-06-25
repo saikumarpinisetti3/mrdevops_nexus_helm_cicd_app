@@ -1,26 +1,25 @@
-pipeline{
+pipeline {
     agent any
-        stages{
-            stage('checkout'){
-                steps{
-                    echo "checkouted"
-                }
-            }
-            stage('sonar quality check'){
-             agent{
-                  docker{
-                    image 'maven'
-             }
-         }
-             steps{
-                script{
-                    withSonarQubeEnv(credentialsId: 'token') {
-                        // some block
-                        sh 'mvn cleanpackage sonar:sonar'
-                     }
-                }
-             }
+    stages {
+        stage('checkout') {
+            steps {
+                echo "checked out"
             }
         }
-    
+        stage('sonar quality check') {
+            agent {
+                docker {
+                    image 'maven'
+                }
+            }
+            steps {
+                script {
+                    withSonarQubeEnv(credentialsId: 'token') {
+                        // some block
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        }
+    }
 }
