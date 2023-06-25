@@ -7,9 +7,11 @@ pipeline{
                 }
             }
             stage('sonar quality check'){
-             agent docker{
+             agent{
+                  docker{
                     image 'maven'
              }
+         }
              steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'token') {
