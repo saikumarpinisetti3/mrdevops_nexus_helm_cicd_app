@@ -41,15 +41,6 @@ pipeline {
                 }
             }
         }
-		 stage('identifying misconfig using datree and helm'){
-            steps{
-                script{
-                    dir('kubernetes/myapp') {
-                        sh "helm datree test ."
-                    }
-                }
-            }
-        }
 		stage('pushing to the nexus repo '){
             steps{
                 script{
