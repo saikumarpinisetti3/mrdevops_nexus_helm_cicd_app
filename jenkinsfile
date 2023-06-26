@@ -44,7 +44,7 @@ pipeline {
 		stage('pushing to the nexus repo '){
             steps{
                 script{
-                    dir('kubernetes/myapp') {
+                    dir('kubernetes/') {
                         sh "tar -czvf myapp-1.tgz myapp/"
                     sh "curl -u admin:saikumar http://13.232.182.185:8081/repository/helm-hosted/ --upload-file myapp-1.tgz -v"
                 }
