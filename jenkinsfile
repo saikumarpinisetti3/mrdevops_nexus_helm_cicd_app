@@ -33,7 +33,7 @@ pipeline {
                 steps{
                     script{
                         withCredentials([string(credentialsId: 'nexus', variable: 'nexus-creds')]) {
-                    sh 'dockerbuild -t saikumar:latest .'
+                    sh 'docker build -t 13.232.182.185:8083/springapp:${VERSION} .'
                     sh 'docker login -u admin -p $nexus-creds 13.232.182.185:8083'
                     sh 'docker push 13.232.182.185:8083/springapp:${VERSION}'
                     sh 'docker rmi 13.232.182.185:8083/springapp:${VERSION}'
